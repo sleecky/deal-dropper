@@ -229,4 +229,149 @@
     </div>
   </section>
 
-  <section id="deals" class
+  <section id="deals" class="deals" aria-live="polite" aria-label="Deals List">
+    <!-- Deal cards inserted here dynamically -->
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 DealDropper. All rights reserved.
+</footer>
+
+<script>
+  const deals = [
+    {
+      id: 1,
+      title: "Wireless Bluetooth Headphones",
+      category: "electronics",
+      description: "High-quality sound with noise cancellation.",
+      price: "$45.99",
+      originalPrice: "$89.99",
+      image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80",
+      url: "https://affiliate-link-example.com/product1",
+    },
+    {
+      id: 2,
+      title: "Men's Casual Jacket",
+      category: "clothing",
+      description: "Comfortable and stylish for everyday wear.",
+      price: "$59.99",
+      originalPrice: "$99.99",
+      image: "https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=400&q=80",
+      url: "https://affiliate-link-example.com/product2",
+    },
+    {
+      id: 3,
+      title: "Inspirational Novel Book",
+      category: "books",
+      description: "A bestselling novel that inspires.",
+      price: "$12.99",
+      originalPrice: "$22.99",
+      image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80",
+      url: "https://affiliate-link-example.com/product3",
+    },
+    {
+      id: 4,
+      title: "Stainless Steel Cookware Set",
+      category: "home",
+      description: "Durable and non-stick cookware.",
+      price: "$89.99",
+      originalPrice: "$159.99",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+      url: "https://affiliate-link-example.com/product4",
+    },
+    {
+      id: 5,
+      title: "Men's Luxury Watch",
+      category: "gifts-male",
+      description: "Elegant and precise wristwatch.",
+      price: "$149.99",
+      originalPrice: "$249.99",
+      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80",
+      url: "https://affiliate-link-example.com/product5",
+    },
+    {
+      id: 6,
+      title: "Women's Handbag",
+      category: "gifts-female",
+      description: "Stylish handbag for every occasion.",
+      price: "$79.99",
+      originalPrice: "$139.99",
+      image: "https://images.unsplash.com/photo-1520975694225-d2a6be13ce49?auto=format&fit=crop&w=400&q=80",
+      url: "https://affiliate-link-example.com/product6",
+    },
+    {
+      id: 7,
+      title: "Kids' Educational Toy Set",
+      category: "gifts-kids",
+      description: "Fun and learning combined.",
+      price: "$29.99",
+      originalPrice: "$49.99",
+      image: "https://images.unsplash.com/photo-1580582935536-242953b5485e?auto=format&fit=crop&w=400&q=80",
+      url: "https://affiliate-link-example.com/product7",
+    },
+    {
+      id: 8,
+      title: "Smart Fitness Watch",
+      category: "electronics",
+      description: "Track your health and workouts.",
+      price: "$69.99",
+      originalPrice: "$129.99",
+      image: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=400&q=80",
+      url: "https://affiliate-link-example.com/product8",
+    },
+  ];
+
+  const dealsContainer = document.getElementById("deals");
+  const categories = document.querySelectorAll(".category-card");
+  const searchBar = document.getElementById("searchBar");
+
+  let activeCategory = "all";
+  let searchTerm = "";
+
+  function renderDeals() {
+    const filteredDeals = deals.filter(deal => {
+      const matchesCategory = activeCategory === "all" || deal.category === activeCategory;
+      const matchesSearch = deal.title.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+
+    dealsContainer.innerHTML = filteredDeals.length === 0
+      ? `<p style="grid-column: 1/-1; text-align:center; font-weight:700; color:#999;">No deals found.</p>`
+      : filteredDeals.map(deal => `
+      <article class="deal-card" tabindex="0">
+        <img src="${deal.image}" alt="${deal.title}" loading="lazy" />
+        <h3 class="deal-title">${deal.title}</h3>
+        <p class="deal-desc">${deal.description}</p>
+        <p class="deal-price">${deal.price}<span class="original-price">${deal.originalPrice}</span></p>
+        <a href="${deal.url}" target="_blank" rel="noopener noreferrer" class="deal-btn" aria-label="Buy ${deal.title} now">Buy Now</a>
+      </article>
+    `).join('');
+  }
+
+  categories.forEach(cat => {
+    cat.addEventListener("click", () => {
+      categories.forEach(c => c.classList.remove("active"));
+      cat.classList.add("active");
+      activeCategory = cat.dataset.category;
+      renderDeals();
+    });
+    cat.addEventListener("keydown", e => {
+      if(e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        cat.click();
+      }
+    });
+  });
+
+  searchBar.addEventListener("input", e => {
+    searchTerm = e.target.value;
+    renderDeals();
+  });
+
+  // Initial render
+  renderDeals();
+</script>
+
+</body>
+</html>
