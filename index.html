@@ -5,30 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DealDropper - Best Discounts & Deals</title>
 <style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
   body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #f5f7fa;
     color: #222;
   }
   header {
-    background-color: #ff6f61;
-    padding: 1rem 2rem;
+    background-color: #1e90ff;
+    padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.6rem;
     color: white;
   }
-  header .logo-icon {
-    width: 28px;
-    height: 28px;
-    fill: white;
-  }
-  header h1 {
-    margin: 0;
+  header .logo-text {
     font-weight: 900;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     user-select: none;
+    font-family: 'Segoe UI Black', sans-serif;
   }
   nav {
     margin-left: auto;
@@ -41,72 +40,93 @@
     transition: color 0.3s ease;
   }
   nav a:hover {
-    color: #ffd3cd;
+    color: #cce4ff;
   }
+
   main {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 2rem auto;
     padding: 0 1rem;
   }
+
   #searchBar {
     width: 100%;
-    max-width: 400px;
+    max-width: 380px;
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    border-radius: 30px;
-    border: 1.5px solid #ccc;
-    margin-bottom: 2rem;
+    border-radius: 25px;
+    border: 1.5px solid #bbb;
+    margin-bottom: 1.8rem;
     outline: none;
     transition: border-color 0.3s ease;
   }
   #searchBar:focus {
-    border-color: #ff6f61;
-    box-shadow: 0 0 8px #ff6f61aa;
+    border-color: #1e90ff;
+    box-shadow: 0 0 8px #1e90ffaa;
   }
+
+  /* Categories horizontal scroll */
   section.categories {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 3rem;
+    overflow-x: auto;
+    gap: 0.8rem;
+    padding-bottom: 0.8rem;
+    margin-bottom: 2.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: #1e90ff #e0e0e0;
   }
+  section.categories::-webkit-scrollbar {
+    height: 6px;
+  }
+  section.categories::-webkit-scrollbar-thumb {
+    background-color: #1e90ff;
+    border-radius: 3px;
+  }
+  section.categories::-webkit-scrollbar-track {
+    background-color: #e0e0e0;
+  }
+
   .category-card {
     background: white;
-    flex: 1 1 150px;
-    max-width: 180px;
-    padding: 1rem;
+    flex: 0 0 auto;
+    width: 110px;
+    padding: 0.7rem 1rem;
     text-align: center;
     cursor: pointer;
     border: 2px solid transparent;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 0 3px #ccc;
-    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
     user-select: none;
   }
   .category-card:hover,
   .category-card.active {
-    border-color: #ff6f61;
-    background-color: #fff0f0;
-    box-shadow: 0 0 10px #ff6f61aa;
+    border-color: #1e90ff;
+    background-color: #e6f0ff;
+    box-shadow: 0 0 12px #1e90ffaa;
   }
   .category-card img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 0.7rem;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 0.4px #666);
   }
   .category-card p {
     margin: 0;
     font-weight: 700;
-    color: #ff6f61;
+    font-size: 0.95rem;
+    color: #1e90ff;
   }
+
+  /* Deals grid */
   section.deals {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.5rem;
   }
   .deal-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -117,50 +137,54 @@
   }
   .deal-card:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px #ff6f61cc;
+    box-shadow: 0 0 15px #1e90ffcc;
   }
   .deal-card img {
     width: 100%;
-    border-radius: 8px;
-    object-fit: contain;
-    margin-bottom: 0.8rem;
-    max-height: 180px;
-    background: #fafafa;
+    border-radius: 12px;
+    object-fit: cover;
+    max-height: 170px;
+    margin-bottom: 0.9rem;
+    background: #f0f2f7;
   }
   .deal-title {
     font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: #ff6f61;
+    font-size: 1.12rem;
+    margin-bottom: 0.4rem;
+    color: #1e90ff;
   }
   .deal-desc {
     font-size: 0.9rem;
     margin-bottom: 0.6rem;
     color: #555;
+    flex-grow: 1;
   }
   .deal-price {
     font-weight: 700;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
   }
   .original-price {
     text-decoration: line-through;
     color: #999;
-    margin-left: 0.5rem;
+    margin-left: 0.6rem;
     font-weight: 400;
+    font-size: 0.9rem;
   }
   .deal-btn {
-    background-color: #ff6f61;
+    background-color: #1e90ff;
     color: white;
     text-align: center;
-    padding: 0.6rem 1rem;
-    border-radius: 6px;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
     font-weight: 700;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    user-select: none;
   }
   .deal-btn:hover {
-    background-color: #e05850;
+    background-color: #1573d1;
   }
+
   footer {
     text-align: center;
     padding: 1rem;
@@ -169,21 +193,26 @@
     color: #777;
     font-size: 0.9rem;
   }
-  @media (max-width: 600px) {
-    section.categories {
-      flex-direction: column;
-      align-items: center;
+
+  /* Responsive tweaks */
+  @media (max-width: 700px) {
+    section.deals {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+  }
+  @media (max-width: 450px) {
+    header {
+      padding: 1rem 1rem;
+    }
+    nav {
+      display: none;
     }
   }
 </style>
 </head>
 <body>
 <header>
-  <!-- Simple gift icon SVG for logo -->
-  <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8H2v-2h2V7a3 3 0 0 1 6 0h2a3 3 0 0 1 6 0v3h2v2h-2zM7 7a1 1 0 0 0-1 1v3h4V7H7zm6 0v4h4V8a1 1 0 0 0-1-1h-3z"/>
-  </svg>
-  <h1>DealDropper</h1>
+  <h1 class="logo-text" aria-label="DealDropper Logo">DealDropper</h1>
   <nav>
     <a href="#categories">Categories</a>
     <a href="#deals">Deals</a>
@@ -191,46 +220,60 @@
 </header>
 
 <main>
-  <input type="search" id="searchBar" placeholder="Search deals..." aria-label="Search deals" />
+  <input
+    type="search"
+    id="searchBar"
+    placeholder="Search deals..."
+    aria-label="Search deals"
+  />
 
   <section id="categories" class="categories" aria-label="Product Categories">
-    <div class="category-card active" data-category="all" tabindex="0">
-      <img src="https://img.icons8.com/ios-filled/50/ff6f61/shop.png" alt="All categories icon" />
+    <div class="category-card active" data-category="all" tabindex="0" role="button" aria-pressed="true">
+      <img
+        src="https://img.icons8.com/ios-filled/50/1e90ff/shop.png"
+        alt="All categories icon"
+      />
       <p>All</p>
     </div>
-    <div class="category-card" data-category="electronics" tabindex="0">
-      <img src="https://img.icons8.com/ios-filled/50/ff6f61/iphone.png" alt="Electronics Icon" />
+    <div class="category-card" data-category="electronics" tabindex="0" role="button" aria-pressed="false">
+      <img
+        src="https://img.icons8.com/ios-filled/50/1e90ff/iphone.png"
+        alt="Electronics Icon"
+      />
       <p>Electronics</p>
     </div>
-    <div class="category-card" data-category="clothing" tabindex="0">
-      <img src="https://img.icons8.com/ios-filled/50/ff6f61/t-shirt.png" alt="Clothing Icon" />
+    <div class="category-card" data-category="clothing" tabindex="0" role="button" aria-pressed="false">
+      <img
+        src="https://img.icons8.com/ios-filled/50/1e90ff/t-shirt.png"
+        alt="Clothing Icon"
+      />
       <p>Clothing</p>
     </div>
-    <div class="category-card" data-category="books" tabindex="0">
-      <img src="https://img.icons8.com/ios-filled/50/ff6f61/books.png" alt="Books Icon" />
+    <div class="category-card" data-category="books" tabindex="0" role="button" aria-pressed="false">
+      <img
+        src="https://img.icons8.com/ios-filled/50/1e90ff/books.png"
+        alt="Books Icon"
+      />
       <p>Books</p>
     </div>
-    <div class="category-card" data-category="home" tabindex="0">
-      <img src="https://img.icons8.com/ios-filled/50/ff6f61/home.png" alt="Home & Kitchen Icon" />
-      <p>Home & Kitchen</p>
+    <div class="category-card" data-category="home" tabindex="0" role="button" aria-pressed="false">
+      <img
+        src="https://img.icons8.com/ios-filled/50/1e90ff/home.png"
+        alt="Home Icon"
+      />
+      <p>Home</p>
     </div>
-    <!-- New recommended gifts categories -->
-    <div class="category-card" data-category="gifts-male" tabindex="0">
-      <img src="https://img.icons8.com/ios-filled/50/ff6f61/male.png" alt="Gifts for Male Icon" />
-      <p>Gifts for Male</p>
-    </div>
-    <div class="category-card" data-category="gifts-female" tabindex="0">
-      <img src="https://img.icons8.com/ios-filled/50/ff6f61/female.png" alt="Gifts for Female Icon" />
-      <p>Gifts for Female</p>
-    </div>
-    <div class="category-card" data-category="gifts-kids" tabindex="0">
-      <img src="https://img.icons8.com/ios-filled/50/ff6f61/baby.png" alt="Gifts for Kids Icon" />
+    <div class="category-card" data-category="gifts-kids" tabindex="0" role="button" aria-pressed="false">
+      <img
+        src="https://img.icons8.com/ios-filled/50/1e90ff/toy.png"
+        alt="Kids Gifts Icon"
+      />
       <p>Gifts for Kids</p>
     </div>
   </section>
 
   <section id="deals" class="deals" aria-live="polite" aria-label="Deals List">
-    <!-- Deal cards inserted here dynamically -->
+    <!-- Deals inserted by JS -->
   </section>
 </main>
 
@@ -281,26 +324,6 @@
       url: "https://affiliate-link-example.com/product4",
     },
     {
-      id: 5,
-      title: "Men's Luxury Watch",
-      category: "gifts-male",
-      description: "Elegant and precise wristwatch.",
-      price: "$149.99",
-      originalPrice: "$249.99",
-      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80",
-      url: "https://affiliate-link-example.com/product5",
-    },
-    {
-      id: 6,
-      title: "Women's Handbag",
-      category: "gifts-female",
-      description: "Stylish handbag for every occasion.",
-      price: "$79.99",
-      originalPrice: "$139.99",
-      image: "https://images.unsplash.com/photo-1520975694225-d2a6be13ce49?auto=format&fit=crop&w=400&q=80",
-      url: "https://affiliate-link-example.com/product6",
-    },
-    {
       id: 7,
       title: "Kids' Educational Toy Set",
       category: "gifts-kids",
@@ -339,7 +362,7 @@
     dealsContainer.innerHTML = filteredDeals.length === 0
       ? `<p style="grid-column: 1/-1; text-align:center; font-weight:700; color:#999;">No deals found.</p>`
       : filteredDeals.map(deal => `
-      <article class="deal-card" tabindex="0">
+      <article class="deal-card" tabindex="0" aria-label="${deal.title} deal">
         <img src="${deal.image}" alt="${deal.title}" loading="lazy" />
         <h3 class="deal-title">${deal.title}</h3>
         <p class="deal-desc">${deal.description}</p>
@@ -351,13 +374,17 @@
 
   categories.forEach(cat => {
     cat.addEventListener("click", () => {
-      categories.forEach(c => c.classList.remove("active"));
+      categories.forEach(c => {
+        c.classList.remove("active");
+        c.setAttribute("aria-pressed", "false");
+      });
       cat.classList.add("active");
+      cat.setAttribute("aria-pressed", "true");
       activeCategory = cat.dataset.category;
       renderDeals();
     });
     cat.addEventListener("keydown", e => {
-      if(e.key === "Enter" || e.key === " ") {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         cat.click();
       }
@@ -372,6 +399,5 @@
   // Initial render
   renderDeals();
 </script>
-
 </body>
 </html>
