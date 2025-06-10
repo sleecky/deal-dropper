@@ -5,26 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DealDropper - Best Discounts & Deals</title>
 <style>
-  /* Reset and base */
   body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f9f9f9;
-    color: #222222;
+    color: #222;
   }
   header {
     background-color: #ff6f61;
     padding: 1rem 2rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 0.7rem;
     color: white;
+  }
+  header .logo-icon {
+    width: 28px;
+    height: 28px;
+    fill: white;
   }
   header h1 {
     margin: 0;
     font-weight: 900;
     font-size: 1.8rem;
-    cursor: default;
+    user-select: none;
+  }
+  nav {
+    margin-left: auto;
   }
   nav a {
     color: white;
@@ -36,14 +43,11 @@
   nav a:hover {
     color: #ffd3cd;
   }
-
   main {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
   }
-
-  /* Search bar */
   #searchBar {
     width: 100%;
     max-width: 400px;
@@ -59,8 +63,6 @@
     border-color: #ff6f61;
     box-shadow: 0 0 8px #ff6f61aa;
   }
-
-  /* Categories */
   section.categories {
     display: flex;
     flex-wrap: wrap;
@@ -73,12 +75,13 @@
     flex: 1 1 150px;
     max-width: 180px;
     padding: 1rem;
-    border-radius: 10px;
     text-align: center;
     cursor: pointer;
     border: 2px solid transparent;
-    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
     box-shadow: 0 0 3px #ccc;
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
   }
   .category-card:hover,
   .category-card.active {
@@ -96,8 +99,6 @@
     font-weight: 700;
     color: #ff6f61;
   }
-
-  /* Deals grid */
   section.deals {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
@@ -124,12 +125,18 @@
     object-fit: contain;
     margin-bottom: 0.8rem;
     max-height: 180px;
+    background: #fafafa;
   }
   .deal-title {
     font-weight: 700;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: #ff6f61;
+  }
+  .deal-desc {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    color: #555;
   }
   .deal-price {
     font-weight: 700;
@@ -154,7 +161,6 @@
   .deal-btn:hover {
     background-color: #e05850;
   }
-
   footer {
     text-align: center;
     padding: 1rem;
@@ -163,7 +169,6 @@
     color: #777;
     font-size: 0.9rem;
   }
-
   @media (max-width: 600px) {
     section.categories {
       flex-direction: column;
@@ -174,6 +179,10 @@
 </head>
 <body>
 <header>
+  <!-- Simple gift icon SVG for logo -->
+  <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8H2v-2h2V7a3 3 0 0 1 6 0h2a3 3 0 0 1 6 0v3h2v2h-2zM7 7a1 1 0 0 0-1 1v3h4V7H7zm6 0v4h4V8a1 1 0 0 0-1-1h-3z"/>
+  </svg>
   <h1>DealDropper</h1>
   <nav>
     <a href="#categories">Categories</a>
@@ -205,16 +214,19 @@
       <img src="https://img.icons8.com/ios-filled/50/ff6f61/home.png" alt="Home & Kitchen Icon" />
       <p>Home & Kitchen</p>
     </div>
+    <!-- New recommended gifts categories -->
+    <div class="category-card" data-category="gifts-male" tabindex="0">
+      <img src="https://img.icons8.com/ios-filled/50/ff6f61/male.png" alt="Gifts for Male Icon" />
+      <p>Gifts for Male</p>
+    </div>
+    <div class="category-card" data-category="gifts-female" tabindex="0">
+      <img src="https://img.icons8.com/ios-filled/50/ff6f61/female.png" alt="Gifts for Female Icon" />
+      <p>Gifts for Female</p>
+    </div>
+    <div class="category-card" data-category="gifts-kids" tabindex="0">
+      <img src="https://img.icons8.com/ios-filled/50/ff6f61/baby.png" alt="Gifts for Kids Icon" />
+      <p>Gifts for Kids</p>
+    </div>
   </section>
 
-  <section id="deals" class="deals" aria-label="Latest Deals">
-    <article class="deal-card" data-category="electronics">
-      <img src="https://m.media-amazon.com/images/I/71kxa1-0zfL._AC_UL320_.jpg" alt="Echo Dot (3rd Gen)" />
-      <h3 class="deal-title">Echo Dot (3rd Gen) - Smart speaker with Alexa</h3>
-      <p class="deal-price">$29.99 <span class="original-price">$49.99</span></p>
-      <a class="deal-btn" href="https://amzn.to/3NvRg94" target="_blank" rel="noopener noreferrer">Buy Now</a>
-    </article>
-
-    <article class="deal-card" data-category="clothing">
-      <img src="https://m.media-amazon.com/images/I/81vpsIs58WL._AC_UL320_.jpg" alt="Levi's Men's 505 Regular Fit Jeans" />
-      <h3 class="deal-title">Levi's Men's
+  <section id="deals" class
