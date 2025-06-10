@@ -1,111 +1,209 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DealDropper - Best Online Deals</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #333; }
-    header { background: #111; color: #fff; padding: 1rem; text-align: center; }
-    h1 { margin: 0; font-size: 2rem; }
-    nav { background: #222; padding: 0.5rem; text-align: center; }
-    nav a { color: #fff; margin: 0 1rem; text-decoration: none; font-weight: bold; }
-    .container { max-width: 1000px; margin: auto; padding: 1rem; }
-    .category { margin-top: 2rem; }
-    .deal { background: #fff; border-radius: 8px; padding: 1rem; margin: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .deal h3 { margin-top: 0; }
-    .deal a { color: #0070f3; text-decoration: none; font-weight: bold; }
-    footer { background: #111; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DealDropper - Best Discounts & Deals</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  header {
+    background-color: #1f1f1f;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ff4d4d;
+  }
+  header h1 {
+    color: #ff4d4d;
+    margin: 0;
+    font-weight: 900;
+    font-size: 1.8rem;
+  }
+  nav a {
+    color: #e0e0e0;
+    margin-left: 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  nav a:hover {
+    color: #ff4d4d;
+  }
+  main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  section.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  .category-card {
+    background: #1f1f1f;
+    flex: 1 1 150px;
+    max-width: 180px;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  .category-card:hover {
+    border-color: #ff4d4d;
+    background-color: #2b2b2b;
+  }
+  .category-card img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.7rem;
+  }
+  .category-card p {
+    margin: 0;
+    font-weight: 700;
+    color: #ff4d4d;
+  }
+  section.deals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 1.5rem;
+  }
+  .deal-card {
+    background: #1f1f1f;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 8px #ff4d4d33;
+    transition: transform 0.3s ease;
+  }
+  .deal-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px #ff4d4dcc;
+  }
+  .deal-card img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: contain;
+    margin-bottom: 0.8rem;
+    max-height: 180px;
+  }
+  .deal-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #ff4d4d;
+  }
+  .deal-price {
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+  .original-price {
+    text-decoration: line-through;
+    color: #b0b0b0;
+    margin-left: 0.5rem;
+    font-weight: 400;
+  }
+  .deal-btn {
+    background-color: #ff4d4d;
+    color: white;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .deal-btn:hover {
+    background-color: #e04343;
+  }
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #1f1f1f;
+    margin-top: 3rem;
+    color: #777;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 600px) {
+    section.categories {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>DealDropper</h1>
-    <p>Discounts You Didn't Know You Needed</p>
-  </header>
+<header>
+  <h1>DealDropper</h1>
   <nav>
-    <a href="#electronics">Electronics</a>
-    <a href="#fashion">Fashion</a>
     <a href="#home">Home</a>
-    <a href="#beauty">Beauty</a>
-    <a href="#gaming">Gaming</a>
+    <a href="#categories">Categories</a>
+    <a href="#deals">Deals</a>
   </nav>
-  <div class="container">
-
-    <div class="category" id="electronics">
-      <h2>📱 Electronics</h2>
-      <div class="deal">
-        <h3>Smartwatch 50% Off</h3>
-        <p>Track your fitness, sleep, and heart rate in style.</p>
-        <a href="https://amzn.to/example1" target="_blank">Buy Now</a>
-      </div>
-      <div class="deal">
-        <h3>Bluetooth Speaker 40% Off</h3>
-        <p>Portable and powerful speaker for any occasion.</p>
-        <a href="https://amzn.to/example2" target="_blank">Buy Now</a>
-      </div>
+</header>
+<main>
+  <section id="categories" class="categories" aria-label="Product Categories">
+    <div class="category-card" tabindex="0">
+      <img src="https://img.icons8.com/ios-filled/50/ff4d4d/iphone.png" alt="Electronics Icon" />
+      <p>Electronics</p>
     </div>
-
-    <div class="category" id="fashion">
-      <h2>🧥 Fashion</h2>
-      <div class="deal">
-        <h3>Nike Sneakers 40% Off</h3>
-        <p>Top-selling casual sneakers for men and women.</p>
-        <a href="https://amzn.to/example3" target="_blank">Buy Now</a>
-      </div>
-      <div class="deal">
-        <h3>Designer Hoodie 35% Off</h3>
-        <p>Comfortable and stylish hoodie for every season.</p>
-        <a href="https://amzn.to/example4" target="_blank">Buy Now</a>
-      </div>
+    <div class="category-card" tabindex="0">
+      <img src="https://img.icons8.com/ios-filled/50/ff4d4d/t-shirt.png" alt="Clothing Icon" />
+      <p>Clothing</p>
     </div>
-
-    <div class="category" id="home">
-      <h2>🏠 Home</h2>
-      <div class="deal">
-        <h3>LED Strip Lights 50% Off</h3>
-        <p>Decorate your room with customizable lighting.</p>
-        <a href="https://amzn.to/example5" target="_blank">Buy Now</a>
-      </div>
-      <div class="deal">
-        <h3>Blender 30% Off</h3>
-        <p>Make smoothies, soups, and more with ease.</p>
-        <a href="https://amzn.to/example6" target="_blank">Buy Now</a>
-      </div>
+    <div class="category-card" tabindex="0">
+      <img src="https://img.icons8.com/ios-filled/50/ff4d4d/books.png" alt="Books Icon" />
+      <p>Books</p>
     </div>
-
-    <div class="category" id="beauty">
-      <h2>💄 Beauty</h2>
-      <div class="deal">
-        <h3>Skincare Set 45% Off</h3>
-        <p>All-in-one solution for glowing skin.</p>
-        <a href="https://amzn.to/example7" target="_blank">Buy Now</a>
-      </div>
-      <div class="deal">
-        <h3>Hair Dryer 50% Off</h3>
-        <p>Salon-quality drying and styling at home.</p>
-        <a href="https://amzn.to/example8" target="_blank">Buy Now</a>
-      </div>
+    <div class="category-card" tabindex="0">
+      <img src="https://img.icons8.com/ios-filled/50/ff4d4d/home.png" alt="Home & Kitchen Icon" />
+      <p>Home & Kitchen</p>
     </div>
+  </section>
 
-    <div class="category" id="gaming">
-      <h2>🎮 Gaming</h2>
-      <div class="deal">
-        <h3>Gaming Mouse 40% Off</h3>
-        <p>Precision and comfort for serious gamers.</p>
-        <a href="https://amzn.to/example9" target="_blank">Buy Now</a>
-      </div>
-      <div class="deal">
-        <h3>Gaming Headset 35% Off</h3>
-        <p>Crystal-clear audio and built-in mic.</p>
-        <a href="https://amzn.to/example10" target="_blank">Buy Now</a>
-      </div>
-    </div>
+  <section id="deals" class="deals" aria-label="Latest Deals">
+    <article class="deal-card">
+      <img src="https://m.media-amazon.com/images/I/71kxa1-0zfL._AC_UL320_.jpg" alt="Echo Dot (3rd Gen)" />
+      <h3 class="deal-title">Echo Dot (3rd Gen) - Smart speaker with Alexa</h3>
+      <p class="deal-price">$29.99 <span class="original-price">$49.99</span></p>
+      <a class="deal-btn" href="https://amzn.to/3NvRg94" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </article>
 
-  </div>
-  <footer>
-    <p>&copy; 2025 DealDropper. All rights reserved.</p>
-  </footer>
+    <article class="deal-card">
+      <img src="https://m.media-amazon.com/images/I/81vpsIs58WL._AC_UL320_.jpg" alt="Levi's Men's 505 Regular Fit Jeans" />
+      <h3 class="deal-title">Levi's Men's 505 Regular Fit Jeans</h3>
+      <p class="deal-price">$39.99 <span class="original-price">$59.99</span></p>
+      <a class="deal-btn" href="https://amzn.to/3vR9mz1" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </article>
+
+    <article class="deal-card">
+      <img src="https://m.media-amazon.com/images/I/81eB+7+CkUL._AC_UL320_.jpg" alt="The Silent Patient by Alex Michaelides" />
+      <h3 class="deal-title">The Silent Patient by Alex Michaelides</h3>
+      <p class="deal-price">$11.99 <span class="original-price">$24.99</span></p>
+      <a class="deal-btn" href="https://amzn.to/3x6tU7S" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </article>
+
+    <article class="deal-card">
+      <img src="https://m.media-amazon.com/images/I/71q+86Pvp7L._AC_UL320_.jpg" alt="Instant Pot Duo 7-in-1 Electric Pressure Cooker" />
+      <h3 class="deal-title">Instant Pot Duo 7-in-1 Electric Pressure Cooker</h3>
+      <p class="deal-price">$79.99 <span class="original-price">$99.99</span></p>
+      <a class="deal-btn" href="https://amzn.to/3Y82LAl" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </article>
+  </section>
+</main>
+<footer>
+  &copy; 2025 DealDropper. All rights reserved.
+</footer>
 </body>
 </html>
