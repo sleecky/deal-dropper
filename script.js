@@ -4,21 +4,21 @@ const products = [
     price: 49.99,
     image: "assets/product1.jpg",
     source: "Amazon",
-    link: "#"
+    link: "https://www.amazon.com/dp/B08N5WRWNW/?tag=dealdropper01-20"
   },
   {
     name: "Smart Coffee Maker",
     price: 89.99,
     image: "assets/product2.jpg",
-    source: "Walmart",
-    link: "#"
+    source: "Amazon",
+    link: "https://www.amazon.com/dp/B07PGL2ZSL/?tag=dealdropper01-20"
   },
   {
     name: "Stylish Hoodie",
     price: 39.99,
     image: "assets/product3.jpg",
-    source: "eBay",
-    link: "#"
+    source: "Amazon",
+    link: "https://www.amazon.com/dp/B084Z5TVFQ/?tag=dealdropper01-20"
   }
 ];
 
@@ -32,7 +32,7 @@ function displayProducts(productArray) {
         <h3>${p.name}</h3>
         <p class="price">$${p.price}</p>
         <p class="source">Source: ${p.source}</p>
-        <button>Buy Now</button>
+        <a href="${p.link}" target="_blank"><button>Buy Now</button></a>
       </div>`;
   });
 }
