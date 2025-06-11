@@ -1,403 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DealDropper - Best Discounts & Deals</title>
-<style>
-  /* Reset & base */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f7fa;
-    color: #222;
-  }
-  header {
-    background-color: #1e90ff;
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    color: white;
-  }
-  header .logo-text {
-    font-weight: 900;
-    font-size: 1.9rem;
-    user-select: none;
-    font-family: 'Segoe UI Black', sans-serif;
-  }
-  nav {
-    margin-left: auto;
-  }
-  nav a {
-    color: white;
-    margin-left: 1.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  nav a:hover {
-    color: #cce4ff;
-  }
-
-  main {
-    max-width: 1100px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
-
-  #searchBar {
-    width: 100%;
-    max-width: 380px;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 25px;
-    border: 1.5px solid #bbb;
-    margin-bottom: 1.8rem;
-    outline: none;
-    transition: border-color 0.3s ease;
-  }
-  #searchBar:focus {
-    border-color: #1e90ff;
-    box-shadow: 0 0 8px #1e90ffaa;
-  }
-
-  /* Categories horizontal scroll */
-  section.categories {
-    display: flex;
-    overflow-x: auto;
-    gap: 0.8rem;
-    padding-bottom: 0.8rem;
-    margin-bottom: 2.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: #1e90ff #e0e0e0;
-  }
-  section.categories::-webkit-scrollbar {
-    height: 6px;
-  }
-  section.categories::-webkit-scrollbar-thumb {
-    background-color: #1e90ff;
-    border-radius: 3px;
-  }
-  section.categories::-webkit-scrollbar-track {
-    background-color: #e0e0e0;
-  }
-
-  .category-card {
-    background: white;
-    flex: 0 0 auto;
-    width: 110px;
-    padding: 0.7rem 1rem;
-    text-align: center;
-    cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    box-shadow: 0 0 3px #ccc;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-    user-select: none;
-  }
-  .category-card:hover,
-  .category-card.active {
-    border-color: #1e90ff;
-    background-color: #e6f0ff;
-    box-shadow: 0 0 12px #1e90ffaa;
-  }
-  .category-card img {
-    width: 42px;
-    height: 42px;
-    margin-bottom: 0.5rem;
-    filter: drop-shadow(0 0 0.4px #666);
-  }
-  .category-card p {
-    margin: 0;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #1e90ff;
-  }
-
-  /* Deals grid */
-  section.deals {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.5rem;
-  }
-  .deal-card {
-    background: white;
-    border-radius: 15px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 0 8px #ccc;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
-  .deal-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #1e90ffcc;
-  }
-  .deal-card img {
-    width: 100%;
-    border-radius: 12px;
-    object-fit: cover;
-    max-height: 170px;
-    margin-bottom: 0.9rem;
-    background: #f0f2f7;
-  }
-  .deal-title {
-    font-weight: 700;
-    font-size: 1.12rem;
-    margin-bottom: 0.4rem;
-    color: #1e90ff;
-  }
-  .deal-desc {
-    font-size: 0.9rem;
-    margin-bottom: 0.6rem;
-    color: #555;
-    flex-grow: 1;
-  }
-  .deal-price {
-    font-weight: 700;
-    margin-bottom: 0.7rem;
-  }
-  .original-price {
-    text-decoration: line-through;
-    color: #999;
-    margin-left: 0.6rem;
-    font-weight: 400;
-    font-size: 0.9rem;
-  }
-  .deal-btn {
-    background-color: #1e90ff;
-    color: white;
-    text-align: center;
-    padding: 0.65rem 1rem;
-    border-radius: 8px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    user-select: none;
-  }
-  .deal-btn:hover {
-    background-color: #1573d1;
-  }
-
-  footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #eee;
-    margin-top: 3rem;
-    color: #777;
-    font-size: 0.9rem;
-  }
-
-  /* Responsive tweaks */
-  @media (max-width: 700px) {
-    section.deals {
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    }
-  }
-  @media (max-width: 450px) {
-    header {
-      padding: 1rem 1rem;
-    }
-    nav {
-      display: none;
-    }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DealDropper</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
-  <h1 class="logo-text" aria-label="DealDropper Logo">DealDropper</h1>
+  <header class="top-banner">
+    <img src="assets/stork.svg" alt="Stork" class="stork" />
+    <div class="cloud cloud1"><img src="assets/cloud1.svg" alt="Cloud 1" /></div>
+    <div class="cloud cloud2"><img src="assets/cloud2.svg" alt="Cloud 2" /></div>
+    <h1><img src="assets/logo.png" alt="DealDropper Logo" class="logo" /></h1>
+  </header>
+
   <nav>
-    <a href="#categories">Categories</a>
-    <a href="#deals">Deals</a>
+    <ul class="categories">
+      <li>Electronics</li>
+      <li>Home</li>
+      <li>Fashion</li>
+      <li>Kids</li>
+      <li>Gifts</li>
+      <li>Recommended</li>
+    </ul>
+    <input type="text" id="searchBar" placeholder="Search for deals..." />
+    <select id="priceFilter">
+      <option value="">Filter by Price</option>
+      <option value="low">Under $25</option>
+      <option value="medium">$25 - $100</option>
+      <option value="high">Over $100</option>
+    </select>
   </nav>
-</header>
 
-<main>
-  <input
-    type="search"
-    id="searchBar"
-    placeholder="Search deals..."
-    aria-label="Search deals"
-  />
+  <main id="productList">
+    <!-- Products will be inserted here by JavaScript -->
+  </main>
 
-  <section id="categories" class="categories" aria-label="Product Categories">
-    <div class="category-card active" data-category="all" tabindex="0" role="button" aria-pressed="true">
-      <img
-        src="https://img.icons8.com/ios-filled/50/1e90ff/shop.png"
-        alt="All categories icon"
-      />
-      <p>All</p>
-    </div>
-    <div class="category-card" data-category="electronics" tabindex="0" role="button" aria-pressed="false">
-      <img
-        src="https://img.icons8.com/ios-filled/50/1e90ff/iphone.png"
-        alt="Electronics Icon"
-      />
-      <p>Electronics</p>
-    </div>
-    <div class="category-card" data-category="clothing" tabindex="0" role="button" aria-pressed="false">
-      <img
-        src="https://img.icons8.com/ios-filled/50/1e90ff/t-shirt.png"
-        alt="Clothing Icon"
-      />
-      <p>Clothing</p>
-    </div>
-    <div class="category-card" data-category="books" tabindex="0" role="button" aria-pressed="false">
-      <img
-        src="https://img.icons8.com/ios-filled/50/1e90ff/books.png"
-        alt="Books Icon"
-      />
-      <p>Books</p>
-    </div>
-    <div class="category-card" data-category="home" tabindex="0" role="button" aria-pressed="false">
-      <img
-        src="https://img.icons8.com/ios-filled/50/1e90ff/home.png"
-        alt="Home Icon"
-      />
-      <p>Home</p>
-    </div>
-    <div class="category-card" data-category="gifts-kids" tabindex="0" role="button" aria-pressed="false">
-      <img
-        src="https://img.icons8.com/ios-filled/50/1e90ff/toy.png"
-        alt="Kids Gifts Icon"
-      />
-      <p>Gifts for Kids</p>
-    </div>
-  </section>
+  <footer>
+    <p>&copy; 2025 DealDropper — All deals shown are affiliate offers from other websites.</p>
+  </footer>
 
-  <section id="deals" class="deals" aria-live="polite" aria-label="Deals List">
-    <!-- Deals inserted by JS -->
-  </section>
-</main>
-
-<footer>
-  &copy; 2025 DealDropper. All rights reserved.
-</footer>
-
-<script>
-  const deals = [
-    {
-      id: 1,
-      title: "Wireless Bluetooth Headphones",
-      category: "electronics",
-      description: "High-quality sound with noise cancellation.",
-      price: "$45.99",
-      originalPrice: "$89.99",
-      image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80",
-      url: "https://affiliate-link-example.com/product1",
-    },
-    {
-      id: 2,
-      title: "Men's Casual Jacket",
-      category: "clothing",
-      description: "Comfortable and stylish for everyday wear.",
-      price: "$59.99",
-      originalPrice: "$99.99",
-      image: "https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=400&q=80",
-      url: "https://affiliate-link-example.com/product2",
-    },
-    {
-      id: 3,
-      title: "Inspirational Novel Book",
-      category: "books",
-      description: "A bestselling novel that inspires.",
-      price: "$12.99",
-      originalPrice: "$22.99",
-      image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80",
-      url: "https://affiliate-link-example.com/product3",
-    },
-    {
-      id: 4,
-      title: "Stainless Steel Cookware Set",
-      category: "home",
-      description: "Durable and non-stick cookware.",
-      price: "$89.99",
-      originalPrice: "$159.99",
-      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
-      url: "https://affiliate-link-example.com/product4",
-    },
-    {
-      id: 7,
-      title: "Kids' Educational Toy Set",
-      category: "gifts-kids",
-      description: "Fun and learning combined.",
-      price: "$29.99",
-      originalPrice: "$49.99",
-      image: "https://images.unsplash.com/photo-1580582935536-242953b5485e?auto=format&fit=crop&w=400&q=80",
-      url: "https://affiliate-link-example.com/product7",
-    },
-    {
-      id: 8,
-      title: "Smart Fitness Watch",
-      category: "electronics",
-      description: "Track your health and workouts.",
-      price: "$69.99",
-      originalPrice: "$129.99",
-      image: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=400&q=80",
-      url: "https://affiliate-link-example.com/product8",
-    },
-  ];
-
-  const dealsContainer = document.getElementById("deals");
-  const categories = document.querySelectorAll(".category-card");
-  const searchBar = document.getElementById("searchBar");
-
-  let activeCategory = "all";
-  let searchTerm = "";
-
-  function renderDeals() {
-    const filteredDeals = deals.filter(deal => {
-      const matchesCategory = activeCategory === "all" || deal.category === activeCategory;
-      const matchesSearch = deal.title.toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-
-    dealsContainer.innerHTML = filteredDeals.length === 0
-      ? `<p style="grid-column: 1/-1; text-align:center; font-weight:700; color:#999;">No deals found.</p>`
-      : filteredDeals.map(deal => `
-      <article class="deal-card" tabindex="0" aria-label="${deal.title} deal">
-        <img src="${deal.image}" alt="${deal.title}" loading="lazy" />
-        <h3 class="deal-title">${deal.title}</h3>
-        <p class="deal-desc">${deal.description}</p>
-        <p class="deal-price">${deal.price}<span class="original-price">${deal.originalPrice}</span></p>
-        <a href="${deal.url}" target="_blank" rel="noopener noreferrer" class="deal-btn" aria-label="Buy ${deal.title} now">Buy Now</a>
-      </article>
-    `).join('');
-  }
-
-  categories.forEach(cat => {
-    cat.addEventListener("click", () => {
-      categories.forEach(c => {
-        c.classList.remove("active");
-        c.setAttribute("aria-pressed", "false");
-      });
-      cat.classList.add("active");
-      cat.setAttribute("aria-pressed", "true");
-      activeCategory = cat.dataset.category;
-      renderDeals();
-    });
-    cat.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        cat.click();
-      }
-    });
-  });
-
-  searchBar.addEventListener("input", e => {
-    searchTerm = e.target.value;
-    renderDeals();
-  });
-
-  // Initial render
-  renderDeals();
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
