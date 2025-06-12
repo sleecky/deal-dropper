@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DealDropper</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top-banner">
+    <img src="assets/stork.png" alt="Stork" class="stork" />
+    <div class="cloud cloud1"><img src="assets/cloud1.png" alt="Cloud 1" /></div>
+    <div class="cloud cloud2"><img src="assets/cloud2.png" alt="Cloud 2" /></div>
+    <h1><img src="assets/logo.png" alt="DealDropper Logo" class="logo" /></h1>
+  </header>
+  <nav>
+    <ul class="categories">
+      <li>Electronics</li>
+      <li>Home</li>
+      <li>Fashion</li>
+      <li>Kids</li>
+      <li>Gifts</li>
+      <li>Recommended</li>
+    </ul>
+    <input type="text" id="searchBar" placeholder="Search for deals..." />
+    <select id="priceFilter">
+      <option value="">Filter by Price</option>
+      <option value="low">Under $25</option>
+      <option value="medium">$25 - $100</option>
+      <option value="high">Over $100</option>
+    </select>
+  </nav>
+  <main id="productList"></main>
+  <footer>
+    <p>&copy; 2025 DealDropper — All deals shown are affiliate offers from Amazon.com.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
