@@ -1,8 +1,25 @@
-
 const products = [
-  { name: "Wireless Headphones", price: 45, category: "Electronics", image: "assets/product1.jpg", link: "https://www.amazon.com/dp/B0CFXBCL5N?tag=dealdropper01-20" },
-  { name: "Smart Coffee Maker", price: 85, category: "Home", image: "assets/product2.jpg", link: "https://www.amazon.com/dp/B09NBLXQD4?tag=dealdropper01-20" },
-  { name: "Comfy Hoodie", price: 30, category: "Fashion", image: "assets/product3.jpg", link: "https://www.amazon.com/dp/B08QF82F6X?tag=dealdropper01-20" }
+  {
+    name: "Wireless Headphones",
+    price: 45,
+    category: "Electronics",
+    image: "https://m.media-amazon.com/images/I/71qGismu6NL._AC_SX679_.jpg",
+    link: "https://www.amazon.com/dp/B0CFXBCL5N?tag=dealdropper01-20"
+  },
+  {
+    name: "Smart Coffee Maker",
+    price: 85,
+    category: "Home",
+    image: "https://m.media-amazon.com/images/I/61bK6GLwI3L._AC_SX679_.jpg",
+    link: "https://www.amazon.com/dp/B09NBLXQD4?tag=dealdropper01-20"
+  },
+  {
+    name: "Comfy Hoodie",
+    price: 30,
+    category: "Fashion",
+    image: "https://m.media-amazon.com/images/I/61UEa9HxTIL._AC_SY879_.jpg",
+    link: "https://www.amazon.com/dp/B08QF82F6X?tag=dealdropper01-20"
+  }
 ];
 
 const productList = document.getElementById("productList");
